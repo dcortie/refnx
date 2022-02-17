@@ -716,6 +716,7 @@ class PolarisationEfficiency:
         )
         # Shape of F2 is (T,)
         # Flipper 2 matrix shape is (4, 4, T). Transpose dimensions to be (T, 4, 4)
+     
         self.flipper2_matrix = [
             [one, z, one, z],
             [F2, (1 - F2), z, z],
@@ -828,10 +829,11 @@ class PolarisedReduce:
         spin_set_reflect :   refnx.reduce.SpinSet
             Reflected beams from PNR experiment
         """
-        # get a default set of reduction options
+        # get a default set of reduction options, I think this fails one
         options = ReductionOptions()
         options.update(reduction_options)
 
+        
         # set up the wavelength bins
         if options["wavelength_bins"] is None:
             wb = calculate_wavelength_bins(
